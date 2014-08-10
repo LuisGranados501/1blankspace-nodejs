@@ -1,17 +1,22 @@
 {
-    "name": "mydigitalstructure",
-    "version": "0.0.4",
-    "description": "node library for mydigitalstructure.com",
+    "name": "1blankspace",
+    "version": "0.0.1",
+    "description": "Example 1blankspace nodejs app",
     "preferGlobal": "true",
-    "main": "mydigitalstructure.js",
-    "bin": { "mydigitalstructure": "mydigitalstructure.js" },
+    "main": "app.js",
+    "bin": { "1blankspace": "app.js" },
     "author": "Mark Byers",
-    "keywords": ["mydigitalstructure"],
+    "keywords": ["1blankspace", "mydigitalstructure"],
     "repository" :
     {
         "type": "git",
-        "url": "https://github.com/ibcom/myds-nodejs.git"
+        "url": "https://github.com/ibcom/1blankspace-nodejs.git"
     },
-    "dependencies": {},
-    "engines": { "node": "*" }
+    "dependencies":
+    {
+        "mydigitalstructure": "0.0.4",
+        "node-schedule": "0.1.13"
+    },
+    "engines": { "node": "*" },
+    "scripts": { "start": "node app.js"}
 }

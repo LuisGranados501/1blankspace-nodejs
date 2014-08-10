@@ -1,20 +1,34 @@
-var mydigitalstructure = require('./mydigitalstructure')
+/* https://www.npmjs.org/package/node-schedule
+ * 0 = Sunday
+ * rule.dayOfWeek = [0, new schedule.Range(4, 6)];
+ * hour is 24 hour format
 
-mydigitalstructure.init('', mydigitalstructure.logon(appMain))
+ * mydigitalstructure.send(options, data, callback)
+ */
 
-function appMain(err, data)
+var mydigitalstructure = require('mydigitalstructure')
+
+mydigitalstructure.init(mydigitalstructure.logon(main))
+
+function main(err, data)
 {
-	//console.log(data)
-
-	var http = require('http');
-
-	http.createServer(function (req, res)
+	if (mydigitalstructure.data.session.status = "OK")
 	{
-  		res.writeHead(200, {'Content-Type': 'text/plain'});
-  		res.end('Hello World\n');
-	}).listen(1337, '127.0.0.1');
-	
-	console.log('Server running at http://127.0.0.1:1337/');
-}
+		var schedule = require('node-schedule');
 
-34 854
+		var rule = new schedule.RecurrenceRule();
+		rule.dayOfWeek = [new schedule.Range(0, 6)];
+		rule.hour = 17; //5PM
+		rule.minute = 0;
+
+		mydigitalstructure.data.schedule = schedule.scheduleJob(rule, function()
+		{
+		    mydigitalstructure.send(
+			{
+				hostname: 'app.coding.lab.ibcom.biz',
+				path: '/rpc/logon/?method=LOGON'
+
+			}, 'name=value');
+		});
+	}	
+}

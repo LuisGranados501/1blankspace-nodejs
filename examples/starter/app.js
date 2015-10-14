@@ -2,12 +2,12 @@
 
 var mydigitalstructure = require('mydigitalstructure')
 
-mydigitalstructure.init(mydigitalstructure.logon(main))
+mydigitalstructure.init(main)
 
-function main(err, data)
+function main(data)
 {
 	if (mydigitalstructure.data.session.status = "OK")
 	{
-		
+		console.log('#myds.session:' + mydigitalstructure.data.session);
 	}	
 }
